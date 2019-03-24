@@ -1,0 +1,24 @@
+stages:
+  - name: physics_simulations
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+        workdir: '{workdir}'
+        inputfile: {step: init, output: inputfile}
+        configfile: '{workdir}/output.txt'
+        workdir: '{workdir}'
+        njobs: {step: 'init', output: njobs}
+        configfile: {step: 'configurate', output: config_file}
+        madminer_dir_signal: '/home/code/mg_processes/signal/madminer'
+        madminer_dir_bkg: '/home/code/mg_processes/background/madminer'
+        mgworkdir: '{workdir}'
+        eventfolder: {step: 'generate', output: script_files, unwrap: true}
+        MG_directory: '/home/software/MG5_aMC_v2_6_2'
+        MG_process_directory: '/home/code/mg_processes'
+        log_directory: '/home/code/logs'
+        dworkdir: '{workdir}'
+        inputdelphes: {step: init, output: inputdelphes}
+        delphes_configfile: {stages: 'configurate', output: config_file, unwrap: true}
+        eventfile: {stages: 'mgpythia', output: postrun_file, unwrap: true}
+        inputfiles: {steps: 'delphes', output: dpostrun_file}
+      workflow: {$ref: 'workflow_physics.yml'}
