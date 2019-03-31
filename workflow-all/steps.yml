@@ -9,13 +9,25 @@ common_env_ml: &common_env_ml
     imagetag: 'latest'
 
     
+#configurate:
+#  environment: *common_env_physics
+#  process:
+#    process_type: interpolated-script-cmd
+#    script: |
+#      python code/configurate.py {inputfile}
+#      cp -R /home/data/* {workdir}
+#  publisher:
+#    publisher_type: 'fromglob-pub'
+#    outputkey: config_file
+#    globexpression: 'madminer_example.h5'
+
+
 configurate:
   environment: *common_env_physics
   process:
     process_type: interpolated-script-cmd
     script: |
       python code/configurate.py {inputfile}
-      cp -R /home/data/* {workdir}
   publisher:
     publisher_type: 'fromglob-pub'
     outputkey: config_file

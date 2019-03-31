@@ -1,9 +1,7 @@
 stages:
-  - name: physics_simulations
+  - name: physics
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-        inputfile: {step: init, output: inputfile}
-        njobs: {step: init, output: njobs}
-        inputdelphes: {step: init, output: inputdelphes}        
+        inputfile: /home/irina/Projects/workflows/workflow-madminer/workflow-all/inputs/input_physics.yml
       workflow: {$ref: 'workflow_physics.yml'}
